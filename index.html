@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0f0f0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="滤镜">
+  <meta name="description" content="专业拍照滤镜 - 暖调复古·胶片·黑白·日系">
+
+  <title>滤镜</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-512.png">
+</head>
+<body>
+
+  <!-- ===== 首页 ===== -->
+  <div id="homeScreen" class="screen">
+    <h1 class="app-title">滤 镜</h1>
+    <p class="app-subtitle">F I L T E R  ·  L A B</p>
+
+    <div class="home-buttons">
+      <button id="btnCamera" class="btn-primary">
+        📷 拍照
+      </button>
+      <button id="btnGallery" class="btn-secondary">
+        🖼️ 从相册选择
+      </button>
+      <input type="file" id="fileInput" accept="image/*" style="display:none">
+    </div>
+
+    <p style="color:var(--text-secondary);font-size:11px;margin-top:12px;opacity:0.5;">
+      也可直接粘贴图片
+    </p>
+
+    <button id="btnInstall" class="btn-install-hint">
+      📲 添加到主屏幕
+    </button>
+  </div>
+
+  <!-- ===== 编辑页 ===== -->
+  <div id="editorScreen" class="screen" style="display:none">
+
+    <!-- 顶栏 -->
+    <div class="editor-toolbar">
+      <button id="btnBack" class="btn-icon">←</button>
+      <span style="font-size:14px;font-weight:500;">编辑滤镜</span>
+      <button id="btnToggleSliders" class="btn-text">🎚️ 参数</button>
+    </div>
+
+    <!-- 图片预览 -->
+    <div class="editor-preview">
+      <img id="editorImage" alt="预览">
+      <canvas id="editorCanvas" style="display:none"></canvas>
+    </div>
+
+    <!-- 滤镜条 -->
+    <div class="filter-strip-container">
+      <div id="filterStrip" class="filter-strip"></div>
+    </div>
+
+    <!-- 参数滑块 -->
+    <div id="slidersPanel" class="sliders-panel"></div>
+
+    <!-- 底栏 -->
+    <div class="editor-footer">
+      <button id="btnCompare" class="footer-btn">
+        <span class="icon">👁️</span> 对比原图
+      </button>
+      <button id="btnReset" class="footer-btn">
+        <span class="icon">↺</span> 重置
+      </button>
+      <button id="btnSave" class="footer-btn primary-action">
+        💾 保存照片
+      </button>
+      <button id="btnSavePreset" class="footer-btn">
+        <span class="icon">⭐</span> 存滤镜
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Loading -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- JS -->
+  <script src="js/filter-engine.js"></script>
+  <script src="js/presets.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // 注册 Service Worker（离线缓存）
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
