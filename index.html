@@ -99,7 +99,7 @@
   <script>
     // 注册 Service Worker（离线缓存）
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(() => {});
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
     }
   </script>
 </body>
